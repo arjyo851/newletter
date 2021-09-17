@@ -2,6 +2,8 @@ const first = require("ee-first");
 const { response } = require("express");
 const express = require("express");
 const request = require("request");
+require("dotenv").config();
+// console.log(process.env);
 
 const app = express();
 
@@ -30,10 +32,10 @@ app.post("/", function (req, res) {
     };
     const jsonData = JSON.stringify(data);
     const url = "https://us5.api.mailchimp.com/3.0/lists/d688106046"
-
+    const api_key = process.env.API_KEY;
     const options = {
         method: "POST",
-        auth: "arjyo851:54c5e79ed60c2463450a2717275efbe8-us5"
+        auth: "arjyo851:" + api_key.toString()
     }
 
     const request = https.request(url, options, function (response) {
